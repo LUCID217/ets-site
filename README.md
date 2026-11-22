@@ -57,3 +57,7 @@ In the HTML, mark the element with `data-i18n="some.key"`. Use `data-i18n-ph` fo
 - **Old links:** old `/play/orbit-rush/` links redirect to the Orbit Rush site.
 - **Gameplay clip:** put the 9:16 clip at `media/orbit-rush.mp4`. Keep it muted, H.264 and under about 4 MB. Until then a screenshot shows.
 - **App privacy policy:** `privacy/orbit-rush.html` is the Orbit Rush app policy for Google Play. It's still English only, and its `[PLACEHOLDERS]` need the company details once ETS Holdings is registered. The website policy is `privacy/index.html`, and it is translated.
+
+## Deploys
+
+Pushing to `main` deploys this automatically on Netlify.
