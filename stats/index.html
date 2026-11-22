@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Traffic · Ebon Tide Studios</title>
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  body { background: var(--tar); }
+  .st-wrap { max-width: 980px; margin: 0 auto; padding: 32px 16px 60px; }
+  h1 { font: 700 28px/1.1 var(--caps); letter-spacing: .05em; margin: 10px 0 6px; }
+  .note { color: var(--mist); font-size: 14px; max-width: 70ch; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0; }
+  .bar button { background: transparent; color: var(--parch); border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font: 600 13px var(--sans); cursor: pointer; }
+  .bar button[aria-pressed="true"] { border-color: var(--brass); color: var(--brass-hi); background: rgba(196,154,69,.1); }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 26px; }
+  .tile { border: 1px solid var(--line-soft); border-radius: 4px; padding: 14px; background: var(--hull); }
+  .tile b { display: block; font: 700 28px/1 var(--sans); font-variant-numeric: tabular-nums; }
+  .tile span { font-size: 12px; color: var(--faint); letter-spacing: .08em; text-transform: uppercase; }
+  h2 { font: 600 14px/1 var(--caps); letter-spacing: .2em; color: var(--brass); margin: 30px 0 10px; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line-soft); border-radius: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--line-soft); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; }
+  th { font: 600 11px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--faint); background: var(--hull); }
+  tr:last-child td { border-bottom: 0; }
+  .meter { display: inline-block; height: 6px; background: var(--brass); border-radius: 3px; vertical-align: middle; margin-left: 8px; opacity: .8; }
+  .empty { color: var(--faint); padding: 20px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="st-wrap">
+  <span class="eyebrow">Ebon Tide Studios</span>
+  <h1>Where visitors come from</h1>
+  <p class="note">Daily totals from the site's own counter: a <b>visit</b> is one browser session, a <b>play</b> is a click on a Play button, a <b>signup</b> is a "Notify me" form. The source comes from the tracked link (<code>/tt</code>, <code>/yt</code>, <code>?ref=</code>…) or, failing that, the site that linked here. Dates are UTC.</p>
+  <div class="bar" id="range">
+    <button data-d="1">Today</button><button data-d="7">7 days</button><button data-d="30" aria-pressed="true">30 days</button><button data-d="90">90 days</button>
+  </div>
+  <div class="tiles" id="tiles"></div>
+  <h2>By source</h2>
+  <div class="scroll"><table id="bySource"></table></div>
+  <h2>By source and region</h2>
+  <div class="scroll"><table id="byRegion"></table></div>
+  <h2>Top countries</h2>
+  <div class="scroll"><table id="byCountry"></table></div>
+  <h2>By day</h2>
+  <div class="scroll"><table id="byDay"></table></div>
+</div>
+<script>
+(function () {
+  var REGION = {
+    LATAM: 'AR BO BR CL CO CR CU DO EC GT HN MX NI PA PE PR PY SV UY VE',
+    SEA: 'BN KH ID LA MY MM PH SG TH TL VN',
+    AU: 'AU'
+  };
+  function region(c) { for (var r in REGION) if (REGION[r].split(' ').indexOf(c) >= 0) return r; return 'Other'; }
+  var REGIONS = ['LATAM', 'SEA', 'AU', 'Other'];
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pct(a, b) { return b ? Math.round(100 * a / b) + '%' : '–'; }
+  function blank() { return { visit: 0, play: 0, signup: 0 }; }
+  function add(map, k, e, n) { (map[k] = map[k] || blank())[e] += n; }
+
+  function render(data) {
+    var src = {}, reg = {}, ctry = {}, day = {}, tot = blank();
+    Object.keys(data.days).forEach(function (d) {
+      var c = data.days[d];
+      Object.keys(c).forEach(function (k) {
+        var p = k.split('|'), e = p[0], ref = p[1], cc = p[2], n = c[k];
+        if (!(e in tot)) return;
+        tot[e] += n; add(src, ref, e, n); add(ctry, cc, e, n); add(day, d, e, n);
+        add(reg, ref + '|' + region(cc), e, n);
+      });
+    });
+    var tiles = [['Visits', tot.visit], ['Plays', tot.play], ['Play rate', pct(tot.play, tot.visit)], ['Signups', tot.signup]];
+    document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile"><b>' + t[1] + '</b><span>' + t[0] + '</span></div>'; }).join('');
+
+    var refs = Object.keys(src).sort(function (a, b) { return src[b].visit - src[a].visit; });
+    var maxV = refs.length ? src[refs[0]].visit || 1 : 1;
+    table('bySource', ['Source', 'Visits', 'Plays', 'Play rate', 'Signups'], refs.map(function (r) {
+      var s = src[r];
+      return [esc(r), s.visit + '<span class="meter" style="width:' + Math.round(60 * s.visit / maxV) + 'px"></span>', s.play, pct(s.play, s.visit), s.signup];
+    }));
+    table('byRegion', ['Source'].concat(REGIONS.map(function (r) { return r + ' visits / plays'; })), refs.map(function (r) {
+      return [esc(r)].concat(REGIONS.map(function (g) { var x = reg[r + '|' + g]; return x ? x.visit + ' / ' + x.play : '–'; }));
+    }));
+    var cs = Object.keys(ctry).sort(function (a, b) { return ctry[b].visit - ctry[a].visit; }).slice(0, 25);
+    table('byCountry', ['Country', 'Region', 'Visits', 'Plays', 'Play rate', 'Signups'], cs.map(function (c) {
+      var s = ctry[c]; return [esc(c === 'XX' ? 'Unknown' : c), region(c), s.visit, s.play, pct(s.play, s.visit), s.signup];
+    }));
+    var ds = Object.keys(day).sort().reverse();
+    table('byDay', ['Day', 'Visits', 'Plays', 'Signups'], ds.map(function (d) { var s = day[d]; return [d, s.visit, s.play, s.signup]; }));
+  }
+  function table(id, head, rows) {
+    var el = document.getElementById(id);
+    el.innerHTML = '<thead><tr>' + head.map(function (h) { return '<th>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      (rows.length ? rows.map(function (r) { return '<tr>' + r.map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>'; }).join('')
+        : '<tr><td class="empty" colspan="' + head.length + '">No visits counted yet.</td></tr>') + '</tbody>';
+  }
+  function load(d) {
+    Array.prototype.forEach.call(document.querySelectorAll('#range button'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-d') === String(d))); });
+    fetch('/api/stats?days=' + d, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(render).catch(function (e) { document.getElementById('tiles').innerHTML = '<p class="note">Could not load the numbers (' + esc(e.message) + ').</p>'; });
+  }
+  document.getElementById('range').addEventListener('click', function (e) { var d = e.target.getAttribute('data-d'); if (d) load(d); });
+  load(30);
+})();
+</script>
+</body>
+</html>

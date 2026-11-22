@@ -157,6 +157,10 @@
                      'Nasa listahan ka na. Habang naghihintay, gaano kalayo ang kaya mong i-orbit?'],
     'thanks.cta':   ['Play {name}', 'Jugar {name}', 'Jogar {name}', 'Main {name}', 'Laruin ang {name}'],
 
+    'links.play':   ['Play {name} free', 'Juega {name} gratis', 'Jogue {name} grátis', 'Main {name} gratis', 'Laruin ang {name} nang libre'],
+    'links.site':   ['Visit the studio', 'Visita el estudio', 'Visite o estúdio', 'Kunjungi studio kami', 'Bisitahin ang studio'],
+    'links.follow': ['Follow along', 'Síguenos', 'Siga a gente', 'Ikuti kami', 'Sundan kami'],
+
     'nf.title': ['Lost in orbit', 'Perdido en órbita', 'Perdido em órbita', 'Tersesat di orbit', 'Naligaw sa orbit'],
     'nf.text':  ["That page drifted off. Let's get you back.", 'Esa página se fue a la deriva. Te llevamos de vuelta.', 'Essa página saiu de órbita. Vamos voltar.', 'Halaman itu melayang entah ke mana. Ayo kembali.', 'Lumutang palayo ang page na iyan. Balik na tayo.'],
     'nf.home':  ['Home', 'Inicio', 'Início', 'Beranda', 'Home'],
@@ -190,6 +194,12 @@
               'Os jogos de navegador salvam pontuações e configurações apenas no armazenamento do seu próprio navegador, e este site também guarda lá o idioma escolhido. Não recebemos nada disso, e limpar os dados do navegador apaga tudo.',
               'Game browser menyimpan skor dan pengaturan hanya di penyimpanan browsermu sendiri, dan situs ini juga mengingat bahasa pilihanmu di sana. Kami tidak menerima data itu, dan menghapus data browser akan menghapusnya.',
               'Sa sarili mong browser lang itinatago ng mga browser game ang score at settings, at doon din tinatandaan ng site na ito ang wikang pinili mo. Hindi namin natatanggap ang alinman dito, at mabubura ito kapag nilinis mo ang browser data.'],
+    'pv.h6': ['Counting visits', 'Conteo de visitas', 'Contagem de visitas', 'Penghitungan kunjungan', 'Pagbilang ng bisita'],
+    'pv.p6': ['To learn which of our social pages bring people here, the site counts visits, Play clicks and signups by the link you arrived from, your country and your language. It keeps only daily totals, with no cookies, no IP addresses and nothing that identifies you. The link you came from is remembered in your browser for 30 days.',
+              'Para saber cuáles de nuestras redes sociales traen visitantes, el sitio cuenta las visitas, los clics en Jugar y las suscripciones según el enlace por el que llegaste, tu país y tu idioma. Solo guarda totales diarios, sin cookies, sin direcciones IP y sin nada que te identifique. El enlace por el que llegaste se recuerda en tu navegador durante 30 días.',
+              'Para saber quais das nossas redes sociais trazem visitantes, o site conta visitas, cliques em Jogar e inscrições pelo link de onde você veio, seu país e seu idioma. Guarda apenas totais diários, sem cookies, sem endereços IP e sem nada que identifique você. O link de onde você veio fica guardado no seu navegador por 30 dias.',
+              'Untuk mengetahui media sosial kami mana yang membawa pengunjung, situs ini menghitung kunjungan, klik Main, dan pendaftaran berdasarkan tautan asalmu, negaramu, dan bahasamu. Yang disimpan hanya total harian, tanpa cookie, tanpa alamat IP, dan tanpa apa pun yang mengenalimu. Tautan asalmu diingat di browsermu selama 30 hari.',
+              'Para malaman kung alin sa aming mga social page ang nagdadala ng bisita, binibilang ng site ang mga pagbisita, pag-click sa Laro at pag-sign up ayon sa link na pinanggalingan mo, sa bansa mo at sa wika mo. Pang-araw-araw na kabuuan lang ang itinatago, walang cookies, walang IP address at walang anumang nagpapakilala sa iyo. Tinatandaan ng browser mo ang link na pinanggalingan mo sa loob ng 30 araw.'],
     'pv.h4': ['Your choices', 'Tus opciones', 'Suas escolhas', 'Pilihanmu', 'Ang mga pagpipilian mo'],
     'pv.p4': ['Every update email has an unsubscribe link. To see, correct or delete what we hold about you, use the <a href="/#contact">contact form</a> and we\'ll respond within 30 days.',
               'Cada correo de novedades incluye un enlace para darte de baja. Para ver, corregir o borrar los datos que tenemos sobre ti, usa el <a href="/#contact">formulario de contacto</a> y te responderemos en un plazo de 30 días.',

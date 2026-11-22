@@ -4,3 +4,14 @@
 # Orbit Rush now lives on its own site. Old links keep working and keep ?lang=.
 /play/orbit-rush    https://ets-orbit-rush.netlify.app/  301
 /play/orbit-rush/*  https://ets-orbit-rush.netlify.app/  301
+
+# Tracked short links for social bios. Each lands on /links/ tagged with where the visitor came from.
+# Totals by source are at /stats/. Add a line here for any new platform or ad campaign.
+/tt   /links/?ref=tiktok     302
+/yt   /links/?ref=youtube    302
+/ig   /links/?ref=instagram  302
+/fb   /links/?ref=facebook   302
+/x    /links/?ref=x          302
+/th   /links/?ref=threads    302
+/dc   /links/?ref=discord    302
+/rd   /links/?ref=reddit     302

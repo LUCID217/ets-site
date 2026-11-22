@@ -64,3 +64,22 @@ In the HTML, mark the element with `data-i18n="some.key"`. Use `data-i18n-ph` fo
 Pushing to `main` deploys this automatically on Netlify (project ets-games).
 
 Last deploy test: 2026-11-22.
+
+## Social links and traffic counting
+
+- **Link-in-bio page:** `/links/` has Play, Android signup, the studio site and the social accounts. Turn an account on in `assets/socials.js` (`on: true`) once it exists.
+- **Tracked short links:** put these in each platform's bio so the site knows where people came from. They're set in `_redirects`.
+
+  | Platform | Bio link |
+  |---|---|
+  | TikTok | `ets-games.netlify.app/tt` |
+  | YouTube | `ets-games.netlify.app/yt` |
+  | Instagram | `ets-games.netlify.app/ig` |
+  | Facebook | `ets-games.netlify.app/fb` |
+  | X | `ets-games.netlify.app/x` |
+  | Threads / Discord / Reddit | `/th`, `/dc`, `/rd` |
+
+  Any page also takes `?ref=<name>` (or `utm_source=`) for one-off links and ad campaigns, e.g. `/?ref=tt-ads-br`. No code change is needed for a new name.
+- **The counter:** `assets/track.js` sends one *visit* per browser session, a *play* for each Play click and a *signup* for each "Notify me" form. It also passes `ref` on to the game and into the forms' `ref` field. Links from TikTok, YouTube etc. without a tag are still recognised from the referring site.
+- **Where the numbers go:** two Netlify Functions in `netlify/functions/` keep daily totals in Netlify Blobs (store `ets-stats`): source, country, language and game. No cookies, IP addresses or IDs. See them at **`/stats/`** (unlisted, not indexed). The privacy page explains this under "Counting visits".
+- `package.json` exists only so Netlify installs `@netlify/blobs` for the functions. There is still no build step.
