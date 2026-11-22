@@ -63,3 +63,4 @@ In the HTML, mark the element with `data-i18n="some.key"`. Use `data-i18n-ph` fo
 Pushing to `main` deploys this automatically on Netlify (project ets-games).
 
 Last deploy test: 2026-11-22.
+
