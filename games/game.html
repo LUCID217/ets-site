@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ebon Tide Studios</title>
+<meta name="description" content="Ebon Tide Studios makes bright, fast, fair games for your phone. Play Orbit Rush free in your browser.">
+<meta name="theme-color" content="#05070d">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css">
+<meta property="og:title" content="Ebon Tide Studios">
+<meta property="og:description" content="Small games. Deep currents. Play Orbit Rush free in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://ets-games.netlify.app/assets/img/og.jpg">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Ebon Tide Studios"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="16" r="11" fill="#e8e2d0"/><circle cx="25.5" cy="12" r="9.5" fill="#05070d"/><path d="M4 28.5c4-3 8-3 12 0s8 3 12 0 6-3 8-1" stroke="#49b8b2" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M8 34.5c3-2 6-2 9 0s6 2 9 0 5-2 7-1" stroke="#1f6f78" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg><span class="wm"><b>Ebon Tide</b><small>STUDIOS</small></span></a>
+    <nav class="nav">
+      <a href="/#games" class="hide-sm" data-i18n="nav.games">Games</a>
+      <a href="/#studio" class="hide-sm" data-i18n="nav.studio">Studio</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="by-bar"><div class="wrap"><a href="/">&larr; Ebon Tide Studios</a><span aria-hidden="true">·</span><span data-i18n="games.by">An Ebon Tide Studios game</span></div></div>
+<main data-game-page>
+  <div class="gpage" data-g-only>
+    <section>
+      <div class="wrap game-grid">
+        <div class="clip" data-g-media></div>
+        <div class="game-info">
+          <span class="g-pill" data-g-genre></span>
+          <h1 class="g-title" data-g-name></h1>
+          <p class="tagline" data-g-tagline></p>
+          <div class="stack" data-g-actions></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-g-how-wrap>
+      <div class="wrap">
+        <div class="g-sec-title"><h2 data-i18n="game.how">How to play</h2></div>
+        <div class="how" data-g-how></div>
+      </div>
+    </section>
+
+    <section data-g-shots-wrap>
+      <div class="wrap">
+        <div class="g-sec-title"><h2 data-i18n="game.shots">Screenshots</h2><span data-i18n="game.swipe">Swipe</span></div>
+        <div class="shots" data-g-shots></div>
+      </div>
+    </section>
+
+    <section id="notify">
+      <div class="wrap">
+        <div class="g-panel">
+          <h2 data-i18n="game.notifyTitle">Get it on Android first</h2>
+          <p data-g-notify-text></p>
+          <form name="notify" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="notify">
+          <input type="hidden" name="lang" value="en">
+          <p class="hp"><label>Leave this empty <input name="bot-field"></label></p>
+          <input type="hidden" name="games" value="" data-g-games-field>
+          <div class="field">
+            <input type="email" name="email" placeholder="you@email.com" data-i18n-ph="notify.email" autocomplete="email" required aria-label="Email">
+            <button class="g-btn" type="submit" data-i18n="card.notify">Notify me</button>
+          </div>
+          <p class="fine" data-i18n-html="notify.fine">Unsubscribe any time. See our <a href="/privacy/">privacy policy</a>.</p>
+        </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="s-center" data-g-missing hidden>
+    <div class="wrap">
+      <span class="eyebrow">404</span>
+      <h1 class="s-h" data-i18n="nf.title">Lost in orbit</h1>
+      <p class="s-lede" data-i18n="game.notFound"></p>
+      <a class="s-btn" href="/#games" data-i18n="nav.games">Games</a>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="Ebon Tide Studios"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="16" r="11" fill="#e8e2d0"/><circle cx="25.5" cy="12" r="9.5" fill="#05070d"/><path d="M4 28.5c4-3 8-3 12 0s8 3 12 0 6-3 8-1" stroke="#49b8b2" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M8 34.5c3-2 6-2 9 0s6 2 9 0 5-2 7-1" stroke="#1f6f78" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg><span class="wm"><b>Ebon Tide</b><small>STUDIOS</small></span></a>
+    <nav>
+      <a href="/#games" data-i18n="nav.games">Games</a>
+      <a href="/#studio" data-i18n="nav.studio">Studio</a>
+      <a href="/privacy/" data-i18n="footer.privacy">Privacy</a>
+      <a href="/privacy/orbit-rush.html" data-i18n="footer.appPrivacy">Orbit Rush app privacy</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <small>© 2026 Ebon Tide Studios</small>
+  </div>
+</footer>
+<script src="/assets/i18n.js"></script>
+<script src="/assets/games.js"></script>
+<script src="/assets/site.js"></script>
+</body>
+</html>

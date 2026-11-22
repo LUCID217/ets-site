@@ -1,0 +1,6 @@
+# Every game page is built from one file, games/game.html, using the list in assets/games.js.
+/games/*            /games/game.html                    200
+
+# Orbit Rush now lives on its own site. Old links keep working and keep ?lang=.
+/play/orbit-rush    https://ets-orbit-rush.netlify.app/  301
+/play/orbit-rush/*  https://ets-orbit-rush.netlify.app/  301
