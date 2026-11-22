@@ -82,8 +82,8 @@ window.ETS_GAMES = [
   {
     id: 'solar-surfer',
     status: 'soon',
-    theme: { bg: 'linear-gradient(175deg, #ff9a3c, #ff5e8a 55%, #7a3df5)', a1: '#fff3a8', a2: '#ffd23f', edge: '#c98a00', btnInk: '#5a2a00', hot: '#7a3df5', font: 'Lilita One' },
-    cover: '/assets/img/covers/solar-surfer.svg',
+    theme: { bg: 'linear-gradient(165deg, #1c0f3a, #4a1f7a 50%, #e8641a)', a1: '#ffd27a', a2: '#ff8a2a', edge: '#b4500c', btnInk: '#3a1400', hot: '#ff6a1a', font: 'Lilita One' },
+    cover: '/assets/img/world/vox-ignis.webp',
     text: {
       en:      { name: 'Solar Surfer', short: 'Ride the solar winds across the sky.' },
       es:      { short: 'Surfea los vientos solares por el cielo.' },
