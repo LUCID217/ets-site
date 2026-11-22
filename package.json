@@ -1,0 +1,9 @@
+{
+  "name": "ets-site",
+  "private": true,
+  "description": "Ebon Tide Studios website. Static pages plus two small Netlify Functions that count visits by link source.",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^11.1.9"
+  }
+}
