@@ -2,7 +2,7 @@
 
 The studio brand on the page is **Ebon Tide Studios**; the web address stays `ets-games.netlify.app`.
 
-A plain static site. To publish it, drag this whole folder onto the **Deploys** tab of the `ets-games` site on Netlify. There's no build step.
+A plain static site with no build step. Pushing to `main` publishes it (see Deploys below).
 
 Live: https://ets-games.netlify.app · Orbit Rush itself: https://ets-orbit-rush.netlify.app
 
@@ -20,7 +20,8 @@ The site speaks English, Spanish, Portuguese (Brazil), Indonesian and Filipino.
 |---|---|
 | `assets/i18n.js` | Every word of the site's buttons, menus, forms and pages, in all 5 languages. Also the language detection. |
 | `assets/games.js` | The game list: each game's name, descriptions, how-to-play, art and play link, per language. |
-| `assets/site.css` | Two layers: the studio look (dark, tidal, serif) and each game's own look (`.gtheme`, coloured by the game's `theme`). |
+| `assets/site.css` | Two layers: the studio look, taken from the Ebon Tide world bible and concept art (tar-black sea, brass, lantern ember, phosphorous green, Cinzel capitals), and each game's own look (`.gtheme`, coloured by the game's `theme`). |
+| `assets/img/world/` | Ebon Tide concept art used by the studio pages (Fool's Hope, Tide's Fang, the Dominion medallion, the looking glass) and the Solar Surfer cover. |
 | `assets/site.js` | Builds the pages from those two files. You shouldn't need to touch it. |
 
 ## Add a new game
@@ -36,7 +37,7 @@ You only need to change `assets/games.js`. The home page card, the signup checkb
    - `cover`, `hero`, `shots`, `clip`: image and video paths. Leave out any you don't have yet.
    - `text.en`: the English `name`, `genre`, `hook`, `short`, `tagline` and `how`
 3. Fill in `text.es`, `text['pt-BR']`, `text.id` and `text.fil` with the same fields. You only need fields that differ, because the name usually stays the same. Easiest is to ask Claude to "translate the new game entry in games.js".
-4. Drag the folder onto Netlify.
+4. Push to `main`.
 
 To move a game from "coming soon" to playable, change its `status` to `'live'` and add its `playUrl`.
 
