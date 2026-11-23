@@ -137,11 +137,67 @@
     $('[data-g-games-field]', root).value = g.text.en.name;
   }
 
+  /* ---------- "Join the crew" email box (footer of every page + /links) ----------
+   * Sends to the Netlify form "newsletter" (registered by a hidden form in index.html).
+   * Without JavaScript the box isn't shown; the "Notify me" form still works. */
+  var crewCountry = '';
+  function crewGeo() {
+    if (crewCountry) return;
+    crewCountry = '-';
+    try {
+      fetch('/api/geo', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : {}; })
+        .then(function (j) { crewCountry = (j && j.country) || ''; }).catch(function () { crewCountry = ''; });
+    } catch (e) {}
+  }
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function buildCrew() {
+    var spots = $$('[data-crew]');
+    var foot = $('footer .wrap');
+    if (foot && !$('[data-crew]', foot)) {
+      var d = document.createElement('div'); d.setAttribute('data-crew', 'site');
+      foot.insertBefore(d, foot.firstChild); spots.push(d);
+    }
+    spots.forEach(function (box) {
+      if (box.firstChild) return;
+      var where = box.getAttribute('data-crew');
+      box.classList.add('crew');
+      box.innerHTML =
+        '<div class="crew-copy"><span class="eyebrow" data-i18n="crew.eyebrow"></span><p data-i18n="crew.text"></p></div>' +
+        '<form class="crew-form" novalidate>' +
+          '<p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>' +
+          '<div class="field"><input type="email" name="email" required autocomplete="email" data-i18n-ph="notify.email" data-i18n-aria="crew.eyebrow">' +
+          '<button class="s-btn" type="submit" data-i18n="crew.btn"></button></div>' +
+          '<p class="fine crew-msg" role="status" data-i18n-html="crew.fine"></p>' +
+        '</form>';
+      var f = $('form', box), msg = $('.crew-msg', box), email = $('input[type=email]', f), btn = $('button', f);
+      function done() { box.classList.add('is-done'); f.innerHTML = '<p class="crew-ok" data-i18n="crew.done">' + esc(I.t('crew.done')) + '</p>'; }
+      function bad(key) { msg.textContent = I.t(key); msg.classList.add('bad'); }
+      email.addEventListener('focus', crewGeo);
+      f.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var v = email.value.trim();
+        if (!EMAIL.test(v) || v.length > 200) { bad('crew.bad'); email.focus(); return; }
+        if ($('input[name="bot-field"]', f).value) { done(); return; }
+        btn.disabled = true;
+        var body = new URLSearchParams({ 'form-name': 'newsletter', 'bot-field': '', email: v, source: where, game: '',
+          lang: I.lang, country: crewCountry === '-' ? '' : crewCountry, ref: window.ETS_REF || 'direct' });
+        fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body.toString() })
+          .then(function (r) {
+            if (!r.ok) throw new Error(r.status);
+            done();
+            if (window.ETS_HIT) window.ETS_HIT('join', { game: where });
+          })
+          .catch(function () { btn.disabled = false; bad('crew.err'); });
+      });
+    });
+  }
+
   function render() {
     document.documentElement.lang = I.lang;
     applyStatic(); syncSwitcher(); renderGrid(); renderChecks(); renderGamePage();
   }
   buildSwitcher();
+  buildCrew();
   render();
   I.onChange(render);
 })();

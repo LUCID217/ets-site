@@ -2,6 +2,7 @@
  * - Social links carry ?ref=<source> (e.g. ?ref=tiktok). Short links like /tt do this for you (see _redirects).
  * - The source is remembered in this browser for 30 days, so a later Play or signup still counts for it.
  * - Sends one "visit" per browser session, one "play" per Play click and one "signup" per Notify form.
+ * - The "Join the crew" email box (site.js) counts a "join" through window.ETS_HIT.
  * - Totals are at /stats/. Needs games.js loaded first (to know which links are game links).
  */
 (function () {
@@ -77,4 +78,5 @@
   }, true);
 
   window.ETS_REF = ref;
+  window.ETS_HIT = send;
 })();

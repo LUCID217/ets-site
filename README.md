@@ -53,6 +53,7 @@ In the HTML, mark the element with `data-i18n="some.key"`. Use `data-i18n-ph` fo
 
 ## Other bits
 
+- **Email list ("Join the crew"):** a small email box at the top of every page footer and on `/links/`, plus an optional invite inside the Orbit Rush web game after a new best or a LEGENDARY run. All of them send to one Netlify form, `newsletter` (registered by a hidden form in `index.html`), with these fields: `email`, `source` (`site`, `links` or `game`), `game`, `lang`, `country` (from `/api/geo`) and `ref`. Honeypot field: `bot-field`. Find the list under Netlify → Forms → newsletter. The box is built by `assets/site.js`, and its words are the `crew.*` lines in `assets/i18n.js`.
 - **Forms:** "Notify me" and "Contact" use Netlify Forms. Form detection must be on under Project configuration → Forms. Each submission records the visitor's language in a `lang` field, so you know which language to reply in.
 - **Game pages:** all game pages are one file, `games/game.html`. The rule in `_redirects` sends every `/games/<id>/` address to it.
 - **Old links:** old `/play/orbit-rush/` links redirect to the Orbit Rush site.
@@ -81,5 +82,6 @@ Last deploy test: 2026-11-22.
 
   Any page also takes `?ref=<name>` (or `utm_source=`) for one-off links and ad campaigns, e.g. `/?ref=tt-ads-br`. No code change is needed for a new name.
 - **The counter:** `assets/track.js` sends one *visit* per browser session, a *play* for each Play click and a *signup* for each "Notify me" form. It also passes `ref` on to the game and into the forms' `ref` field. Links from TikTok, YouTube etc. without a tag are still recognised from the referring site.
+- **Email invite numbers:** `ask` (the game showed the invite), `join` (an email was sent, from anywhere) and `skip` (closed without joining) are counted too, in the "Email list" table on `/stats/`. The game reports from its own domain, so `/api/hit` and `/api/geo` allow `https://ets-*.netlify.app`.
 - **Where the numbers go:** two Netlify Functions in `netlify/functions/` keep daily totals in Netlify Blobs (store `ets-stats`): source, country, language and game. No cookies, IP addresses or IDs. See them at **`/stats/`** (unlisted, not indexed). The privacy page explains this under "Counting visits".
 - `package.json` exists only so Netlify installs `@netlify/blobs` for the functions. There is still no build step.
