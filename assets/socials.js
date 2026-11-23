@@ -8,6 +8,6 @@ window.ETS_SOCIALS = [
   { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/ebontidestudios', short: '/ig', on: true },
   { id: 'facebook',  name: 'Facebook',  url: 'https://www.facebook.com/ebontidestudios', short: '/fb', on: true },
   { id: 'threads',   name: 'Threads',   url: 'https://www.threads.com/@ebontidestudios', short: '/th', on: true },
-  { id: 'x',         name: 'X',         url: 'https://x.com/ebontidestudios',            short: '/x',  on: false },
+  { id: 'x',         name: 'X',         url: 'https://x.com/EbonTideStudios',            short: '/x',  on: true },
   { id: 'discord',   name: 'Discord',   url: '',                                          short: '/dc', on: false }
 ];
