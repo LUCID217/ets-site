@@ -3,10 +3,11 @@
  * `short` is the tracked short link to put in that platform's bio (see _redirects).
  */
 window.ETS_SOCIALS = [
-  { id: 'tiktok',    name: 'TikTok',    url: 'https://www.tiktok.com/@ebontidestudios',  short: '/tt', on: false },
-  { id: 'youtube',   name: 'YouTube',   url: 'https://www.youtube.com/@ebontidestudios', short: '/yt', on: false },
-  { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/ebontidestudios', short: '/ig', on: false },
-  { id: 'facebook',  name: 'Facebook',  url: 'https://www.facebook.com/ebontidestudios', short: '/fb', on: false },
+  { id: 'tiktok',    name: 'TikTok',    url: 'https://www.tiktok.com/@ebontidestudios',  short: '/tt', on: true },
+  { id: 'youtube',   name: 'YouTube',   url: 'https://www.youtube.com/@EbonTideStudios', short: '/yt', on: true },
+  { id: 'instagram', name: 'Instagram', url: 'https://www.instagram.com/ebontidestudios', short: '/ig', on: true },
+  { id: 'facebook',  name: 'Facebook',  url: 'https://www.facebook.com/ebontidestudios', short: '/fb', on: true },
+  { id: 'threads',   name: 'Threads',   url: 'https://www.threads.com/@ebontidestudios', short: '/th', on: true },
   { id: 'x',         name: 'X',         url: 'https://x.com/ebontidestudios',            short: '/x',  on: false },
   { id: 'discord',   name: 'Discord',   url: '',                                          short: '/dc', on: false }
 ];
