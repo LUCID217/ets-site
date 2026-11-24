@@ -4,13 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ebon Tide Studios</title>
-<meta name="description" content="Ebon Tide Studios: an independent studio making games and stories, from arcade games to the dark seafaring world of Ebon Tide.">
+<meta name="description" content="Play Orbit Rush free in your browser. Made by Ebon Tide Studios, an independent studio making games and stories.">
 <meta name="theme-color" content="#070809">
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-<link rel="preload" href="/assets/fonts/cinzel.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/site.css">
 <meta property="og:title" content="Ebon Tide Studios">
-<meta property="og:description" content="Why do we sail? Games and stories from an independent studio. Play Orbit Rush free in your browser.">
+<meta property="og:description" content="Play Orbit Rush free in your browser. Made by Ebon Tide Studios.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://ets-games.netlify.app/assets/img/og.jpg">
 </head>
@@ -20,6 +19,7 @@
     <a class="logo" href="/" aria-label="Ebon Tide Studios"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="none" stroke="#c49a45" stroke-width="1.5"/><circle cx="20" cy="20" r="15.6" fill="none" stroke="#7d5f27" stroke-width=".8"/><path d="M20 11 L21 19 L29 20 L21 21 L20 29 L19 21 L11 20 L19 19Z" transform="rotate(45 20 20)" fill="#7d5f27"/><path d="M20 5.5 L22.3 17.7 L34.5 20 L22.3 22.3 L20 34.5 L17.7 22.3 L5.5 20 L17.7 17.7Z" fill="#e8c97c"/><circle cx="20" cy="20" r="2.2" fill="#070809"/><path d="M8.6 28.6c2.6-1.8 5.1-1.8 7.6 0s5.1 1.8 7.6 0 5.1-1.8 7.6 0" stroke="#5ff2b8" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".9"/></svg><span class="wm"><b>EBON TIDE</b><small>STUDIOS</small></span></a>
     <nav class="nav">
       <a href="/#games" class="hide-sm" data-i18n="nav.games">Games</a>
+      <a href="/world/" data-i18n="nav.world">World</a>
       <a href="/#studio" class="hide-sm" data-i18n="nav.studio">Studio</a>
       <a href="/#contact" data-i18n="nav.contact">Contact</a>
     </nav>
@@ -27,44 +27,34 @@
 </header>
 
 <main>
-  <section class="s-hero">
-    <div class="art"><img src="/assets/img/world/fools-hope.webp" alt="" fetchpriority="high"></div>
-    <span class="glow" aria-hidden="true"></span>
+  <section class="hero">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="studio.eyebrow">Independent game studio</span>
-      <h1 data-i18n="studio.h1">Why do we sail?</h1>
-      <blockquote data-i18n="studio.quote">The Ebon Tide pulls on the souls of all mortal men a promise of spent powder and salt, for good men born to die.</blockquote>
-      <p class="s-lede" data-i18n="studio.lede"></p>
-      <div class="ctas">
-        <a class="s-btn" href="#games" data-i18n="studio.explore">Explore our games</a>
-        <a class="s-btn line" href="https://ets-orbit-rush.netlify.app/" data-featured="play" data-i18n="thanks.cta">Play Orbit Rush</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="s-sec tight">
-    <div class="wrap">
-      <span class="eyebrow" data-i18n="featured.eyebrow" style="margin-bottom:18px">Out now</span>
-      <div class="feature gtheme" data-featured-theme>
-        <div class="copy">
-          <span class="g-pill hot" data-i18n="hero.pill">New · Free to play</span>
-          <h2 class="g-title" data-featured="name">Orbit Rush</h2>
-          <p class="hook" data-featured="hook"></p>
-          <div class="ctas">
-            <a class="g-btn big" href="https://ets-orbit-rush.netlify.app/" data-featured="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z" fill="currentColor"/></svg><span data-i18n="hero.play">Play now</span></a>
-            <a class="g-btn ghost" href="/games/orbit-rush/" data-featured="page" data-i18n="hero.about">About the game</a>
-          </div>
-          <p class="meta" data-i18n="hero.meta"></p>
+      <div>
+        <h1 data-featured="name">Orbit Rush</h1>
+        <p class="sub" data-i18n="home.free">Free in your browser. No download.</p>
+        <div class="ctas">
+          <a class="s-btn big" href="https://ets-orbit-rush.netlify.app/" data-featured="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5z" fill="currentColor"/></svg><span data-i18n="thanks.cta">Play Orbit Rush</span></a>
+          <a class="t-link" href="/games/orbit-rush/" data-featured="page" data-i18n="hero.about">About the game</a>
         </div>
-        <a class="shot" href="https://ets-orbit-rush.netlify.app/" data-featured="play">
-          <img src="/assets/img/or-play.jpg" data-featured="hero" alt="Orbit Rush">
-          <span class="g-pill hot" data-i18n="hero.tag">Tap to play</span>
-        </a>
+        <p class="credit" data-i18n-html="home.by">Made by <b>Ebon Tide Studios</b></p>
       </div>
+      <a class="phone" href="https://ets-orbit-rush.netlify.app/" data-featured="play" tabindex="-1" aria-hidden="true">
+        <span class="screen"><img src="/assets/img/or-play.jpg" data-featured="hero" alt="" fetchpriority="high"></span>
+      </a>
     </div>
   </section>
 
-  <div class="rule" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 L13.6 10.4 L23 12 L13.6 13.6 L12 23 L10.4 13.6 L1 12 L10.4 10.4Z" fill="currentColor"/></svg></div>
+  <section class="tease" id="world">
+    <a href="/world/">
+      <div class="art">
+        <img src="/assets/img/tide/medallion-lg.webp" srcset="/assets/img/tide/medallion-960.webp 960w, /assets/img/tide/medallion-lg.webp 1600w" sizes="(min-width: 1280px) 1240px, 100vw"
+             width="1600" height="900" alt="Dominion officer's medallion" data-i18n-alt="world.medal" loading="lazy">
+        <span class="sheen" aria-hidden="true"></span>
+      </div>
+      <p class="line"><span data-i18n="home.tease">A drowned age of sail. Stories on the way.</span><span class="go" aria-hidden="true">&rarr;</span></p>
+    </a>
+  </section>
+
   <section class="s-sec" id="games">
     <div class="wrap">
       <div class="s-head">
@@ -75,38 +65,24 @@
     </div>
   </section>
 
-  <section class="world" id="world">
-    <div class="art"><img src="/assets/img/world/tides-fang.webp" alt="" loading="lazy"></div>
-    <div class="wrap grid2">
-      <div>
-        <span class="eyebrow" data-i18n="world.eyebrow">The world</span>
-        <h2 class="s-h" data-i18n="world.title">A drowned age of sail</h2>
-        <p class="s-lede" data-i18n="world.text"></p>
-        <p class="place">Tide's Fang</p>
-      </div>
-      <figure>
-        <img src="/assets/img/world/medallion.webp" alt="" loading="lazy">
-        <figcaption data-i18n="world.medal">Dominion officer's medallion</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="s-sec" id="studio">
+  <section class="s-sec studio" id="studio">
     <div class="wrap">
-      <span class="eyebrow" data-i18n="about.eyebrow">The studio</span>
-      <h2 class="s-h" data-i18n="about.title">Made to pull you back in</h2>
-      <p class="s-lede" data-i18n="about.text" style="margin-bottom:32px"></p>
-      <div class="values">
-        <div class="value"><span class="num">I</span><b data-i18n="perk1.t">Play instantly</b><span data-i18n="perk1.d"></span></div>
-        <div class="value"><span class="num">II</span><b data-i18n="perk2.t">Fair by design</b><span data-i18n="perk2.d"></span></div>
-        <div class="value"><span class="num">III</span><b data-i18n="perk3.t">On Android soon</b><span data-i18n="perk3.d"></span></div>
+      <div>
+        <span class="eyebrow" data-i18n="about.eyebrow">The studio</span>
+        <h2 class="s-h" data-i18n="about.title">Made to pull you back in</h2>
+        <p class="s-lede" data-i18n="about.text"></p>
       </div>
+      <ul class="values">
+        <li class="value"><b data-i18n="perk1.t">Play instantly</b><span data-i18n="perk1.d"></span></li>
+        <li class="value"><b data-i18n="perk2.t">Fair by design</b><span data-i18n="perk2.d"></span></li>
+        <li class="value"><b data-i18n="perk3.t">On Android soon</b><span data-i18n="perk3.d"></span></li>
+      </ul>
     </div>
   </section>
 
   <section class="s-sec" id="contact">
     <div class="wrap two">
-      <div class="s-panel glass" id="updates">
+      <div class="s-panel" id="updates">
         <span class="eyebrow" data-i18n="updates.eyebrow">Updates</span>
         <h2 class="s-h" data-i18n="notify.title">Be first on Google Play</h2>
         <p data-i18n="notify.text"></p>
@@ -161,13 +137,13 @@
     <a class="logo" href="/" aria-label="Ebon Tide Studios"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="none" stroke="#c49a45" stroke-width="1.5"/><circle cx="20" cy="20" r="15.6" fill="none" stroke="#7d5f27" stroke-width=".8"/><path d="M20 11 L21 19 L29 20 L21 21 L20 29 L19 21 L11 20 L19 19Z" transform="rotate(45 20 20)" fill="#7d5f27"/><path d="M20 5.5 L22.3 17.7 L34.5 20 L22.3 22.3 L20 34.5 L17.7 22.3 L5.5 20 L17.7 17.7Z" fill="#e8c97c"/><circle cx="20" cy="20" r="2.2" fill="#070809"/><path d="M8.6 28.6c2.6-1.8 5.1-1.8 7.6 0s5.1 1.8 7.6 0 5.1-1.8 7.6 0" stroke="#5ff2b8" stroke-width="1.3" fill="none" stroke-linecap="round" opacity=".9"/></svg><span class="wm"><b>EBON TIDE</b><small>STUDIOS</small></span></a>
     <nav>
       <a href="/#games" data-i18n="nav.games">Games</a>
+      <a href="/world/" data-i18n="nav.world">World</a>
       <a href="/#studio" data-i18n="nav.studio">Studio</a>
       <a href="/privacy/" data-i18n="footer.privacy">Privacy</a>
       <a href="/privacy/orbit-rush.html" data-i18n="footer.appPrivacy">Orbit Rush app privacy</a>
       <a href="/#contact" data-i18n="nav.contact">Contact</a>
     </nav>
     <small>© 2026 Ebon Tide Studios</small>
-    <p class="motto" data-i18n="studio.h1">Why do we sail?</p>
   </div>
 </footer>
 <script src="/assets/i18n.js"></script>
