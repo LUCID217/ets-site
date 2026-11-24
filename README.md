@@ -20,9 +20,14 @@ The site speaks English, Spanish, Portuguese (Brazil), Indonesian and Filipino.
 |---|---|
 | `assets/i18n.js` | Every word of the site's buttons, menus, forms and pages, in all 5 languages. Also the language detection. |
 | `assets/games.js` | The game list: each game's name, descriptions, how-to-play, art and play link, per language. |
-| `assets/site.css` | Two layers: the studio look, taken from the Ebon Tide world bible and concept art (tar-black sea, brass, lantern ember, phosphorous green, Cinzel capitals), and each game's own look (`.gtheme`, coloured by the game's `theme`). |
-| `assets/img/world/` | Ebon Tide concept art used by the studio pages (Fool's Hope, Tide's Fang, the Dominion medallion, the looking glass) and the Solar Surfer cover. |
+| `assets/site.css` | Two layers: the studio look (near-black, tarnished gold and aged brass, Cormorant Garamond display type with Manrope, lots of empty space, almost no motion), and each game's own look (`.gtheme`, coloured by the game's `theme`), which only the game pages wear. |
+| `assets/img/tide/` | The Ebon Tide stills (medallion, crest, seal and coin, skull and anchor, sailor's log, sextant, mast, distant ship). Each comes as `<name>-960.webp` and `<name>-lg.webp`. The `assets/img/world/` folder holds the Solar Surfer cover. |
 | `assets/site.js` | Builds the pages from those two files. You shouldn't need to touch it. |
+
+## Pages
+
+- **Home (`/`):** Orbit Rush first, with one big Play button. Below it the medallion and one line, "A drowned age of sail. Stories on the way.", which links to the World page. Then the games list, a short studio note, and the updates and contact forms. Keep lore off the home page.
+- **World (`/world/`):** where the Ebon Tide images and lore live. To add a picture, copy a `<figure class="plate">` block in `world/index.html` (add `wide` to make it full width) and add its caption to `assets/i18n.js` as a `cap.*` line.
 
 ## Add a new game
 
@@ -33,7 +38,7 @@ You only need to change `assets/games.js`. The home page card, the signup checkb
    - `id`: the address, lowercase with dashes, e.g. `solar-surfer`
    - `status`: `'soon'` while in development, `'live'` once people can play it. Live games get a Play button.
    - `playUrl`: where Play goes, e.g. `https://ets-solar-surfer.netlify.app/`
-   - `theme`: the game's own colours and display font for its card, home banner and page, e.g. `bg`, `a1`/`a2` (button colours), `hot` (badge colour). The studio look stays around it.
+   - `theme`: the game's own colours and display font for its page at `/games/<id>/` (the home page shows every game in the studio style), e.g. `bg`, `a1`/`a2` (button colours), `hot` (badge colour). The studio look stays around it.
    - `cover`, `hero`, `shots`, `clip`: image and video paths. Leave out any you don't have yet.
    - `text.en`: the English `name`, `genre`, `hook`, `short`, `tagline` and `how`
 3. Fill in `text.es`, `text['pt-BR']`, `text.id` and `text.fil` with the same fields. You only need fields that differ, because the name usually stays the same. Easiest is to ask Claude to "translate the new game entry in games.js".

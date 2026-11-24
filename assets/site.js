@@ -45,6 +45,7 @@
     $$('[data-i18n-html]').forEach(function (el) { el.innerHTML = I.t(el.getAttribute('data-i18n-html'), vars); });
     $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = I.t(el.getAttribute('data-i18n-ph')); });
     $$('[data-i18n-aria]').forEach(function (el) { el.setAttribute('aria-label', I.t(el.getAttribute('data-i18n-aria'))); });
+    $$('[data-i18n-alt]').forEach(function (el) { el.alt = I.t(el.getAttribute('data-i18n-alt')); });
     $$('input[name="lang"]').forEach(function (el) { el.value = I.lang; });
     if (f) {
       $$('[data-featured="name"]').forEach(function (el) { el.textContent = gName(f); });
@@ -52,20 +53,20 @@
       $$('a[data-featured="play"]').forEach(function (el) { el.href = I.withLang(f.playUrl); });
       $$('a[data-featured="page"]').forEach(function (el) { el.href = page(f); });
       $$('[data-featured-theme]').forEach(function (el) { applyTheme(el, f); });
-      $$('img[data-featured="hero"]').forEach(function (el) { if (f.hero) { el.src = f.hero; el.alt = gName(f); } });
+      $$('img[data-featured="hero"]').forEach(function (el) { if (f.hero) { el.src = f.hero; if (!el.closest('[aria-hidden]')) el.alt = gName(f); } });
     }
   }
 
   /* ---------- home page grid ---------- */
   function card(g) {
     var live = g.status === 'live';
-    return '<article class="gcard gtheme" style="' + esc(themeVars(g)) + '">' +
-      '<a class="art" href="' + page(g) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(g.cover) + '" alt="" loading="lazy">' +
-      '<span class="g-pill ' + (live ? 'hot' : 'soon') + '">' + esc(I.t(live ? 'pill.free' : 'pill.soon')) + '</span></a>' +
-      '<div class="body"><h3>' + esc(gName(g)) + '</h3><p>' + esc(I.pick(g.text, 'short')) + '</p><div class="row">' +
+    return '<article class="gcard">' +
+      '<a class="art" href="' + page(g) + '" tabindex="-1" aria-hidden="true"><img src="' + esc(g.cover) + '" alt="" loading="lazy"></a>' +
+      '<div class="body"><span class="status' + (live ? ' live' : '') + '">' + esc(I.t(live ? 'pill.free' : 'pill.soon')) + '</span>' +
+      '<h3>' + esc(gName(g)) + '</h3><p>' + esc(I.pick(g.text, 'short')) + '</p><div class="row">' +
       (live
-        ? '<a class="g-btn" href="' + esc(I.withLang(g.playUrl)) + '">' + esc(I.t('card.play')) + '</a><a class="g-btn ghost" href="' + page(g) + '">' + esc(I.t('card.info')) + '</a>'
-        : '<a class="g-btn ghost" href="' + page(g) + '#notify">' + esc(I.t('card.notify')) + '</a>') +
+        ? '<a class="s-btn" href="' + esc(I.withLang(g.playUrl)) + '">' + esc(I.t('card.play')) + '</a><a class="t-link" href="' + page(g) + '">' + esc(I.t('card.info')) + '</a>'
+        : '<a class="s-btn line" href="' + page(g) + '#notify">' + esc(I.t('card.notify')) + '</a>') +
       '</div></div></article>';
   }
   function renderGrid() {
