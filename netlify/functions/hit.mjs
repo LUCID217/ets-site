@@ -1,11 +1,13 @@
-// POST /api/hit  {e: 'visit'|'play'|'signup', ref, lang, game}
+// POST /api/hit  {e: 'visit'|'play'|'signup'|'ask'|'join'|'skip', ref, lang, game}
+// game is the game id for plays, or where an email signup came from (orbit-rush, site, links).
 // Adds one to today's totals. Stores nothing about the visitor.
 import { getStore } from '@netlify/blobs';
-import { EVENTS, STORE, cleanRef, cleanCountry, cleanGame, today, BOT } from './shared.mjs';
+import { EVENTS, STORE, cleanRef, cleanCountry, cleanGame, today, BOT, cors } from './shared.mjs';
 
 const MAX_KEYS_PER_DAY = 3000;
 
 export default async (req, context) => {
+  if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...cors(req), 'access-control-allow-methods': 'POST', 'access-control-allow-headers': 'content-type' } });
   if (req.method !== 'POST') return new Response('POST only', { status: 405 });
   if (BOT.test(req.headers.get('user-agent') || '')) return new Response(null, { status: 204 });
   let body = {};
@@ -25,7 +27,7 @@ export default async (req, context) => {
   if (counts[key] == null && Object.keys(counts).length >= MAX_KEYS_PER_DAY) return new Response(null, { status: 204 });
   counts[key] = (counts[key] || 0) + 1;
   await store.setJSON(day, counts);
-  return new Response(null, { status: 204, headers: { 'cache-control': 'no-store' } });
+  return new Response(null, { status: 204, headers: { 'cache-control': 'no-store', ...cors(req) } });
 };
 
 export const config = { path: '/api/hit' };

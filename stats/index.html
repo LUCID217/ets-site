@@ -34,11 +34,13 @@
 <div class="st-wrap">
   <span class="eyebrow">Ebon Tide Studios</span>
   <h1>Where visitors come from</h1>
-  <p class="note">Daily totals from the site's own counter: a <b>visit</b> is one browser session, a <b>play</b> is a click on a Play button, a <b>signup</b> is a "Notify me" form. The source comes from the tracked link (<code>/tt</code>, <code>/yt</code>, <code>?ref=</code>…) or, failing that, the site that linked here. Dates are UTC.</p>
+  <p class="note">Daily totals from the site's own counter: a <b>visit</b> is one browser session, a <b>play</b> is a click on a Play button, a <b>signup</b> is a "Notify me" form. The <b>email list</b> counts the optional "Join the crew" invite: <b>shown</b> is each time the game offered it, <b>joined</b> is an email sent (from the game, the site footer or /links), <b>closed</b> is the player saying no or just playing on. The source comes from the tracked link (<code>/tt</code>, <code>/yt</code>, <code>?ref=</code>…) or, failing that, the site that linked here. Dates are UTC.</p>
   <div class="bar" id="range">
     <button data-d="1">Today</button><button data-d="7">7 days</button><button data-d="30" aria-pressed="true">30 days</button><button data-d="90">90 days</button>
   </div>
   <div class="tiles" id="tiles"></div>
+  <h2>Email list</h2>
+  <div class="scroll"><table id="byCrew"></table></div>
   <h2>By source</h2>
   <div class="scroll"><table id="bySource"></table></div>
   <h2>By source and region</h2>
@@ -59,23 +61,30 @@
   var REGIONS = ['LATAM', 'SEA', 'AU', 'Other'];
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function pct(a, b) { return b ? Math.round(100 * a / b) + '%' : '–'; }
-  function blank() { return { visit: 0, play: 0, signup: 0 }; }
+  function blank() { return { visit: 0, play: 0, signup: 0, ask: 0, join: 0, skip: 0 }; }
   function add(map, k, e, n) { (map[k] = map[k] || blank())[e] += n; }
 
   function render(data) {
-    var src = {}, reg = {}, ctry = {}, day = {}, tot = blank();
+    var src = {}, reg = {}, ctry = {}, day = {}, crew = {}, tot = blank();
     Object.keys(data.days).forEach(function (d) {
       var c = data.days[d];
       Object.keys(c).forEach(function (k) {
         var p = k.split('|'), e = p[0], ref = p[1], cc = p[2], n = c[k];
         if (!(e in tot)) return;
+        if (e === 'ask' || e === 'join' || e === 'skip') { tot[e] += n; add(crew, p[4] || '-', e, n); add(day, d, e, n); return; }
         tot[e] += n; add(src, ref, e, n); add(ctry, cc, e, n); add(day, d, e, n);
         add(reg, ref + '|' + region(cc), e, n);
       });
     });
-    var tiles = [['Visits', tot.visit], ['Plays', tot.play], ['Play rate', pct(tot.play, tot.visit)], ['Signups', tot.signup]];
+    var tiles = [['Visits', tot.visit], ['Plays', tot.play], ['Play rate', pct(tot.play, tot.visit)], ['Signups', tot.signup],
+      ['Email list joins', tot.join], ['Game invites shown', tot.ask], ['Invite join rate', pct((crew['orbit-rush'] || blank()).join, tot.ask)], ['Invites closed', tot.skip]];
     document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile"><b>' + t[1] + '</b><span>' + t[0] + '</span></div>'; }).join('');
 
+    var WHERE = { 'orbit-rush': 'Orbit Rush (in game)', site: 'Site footer', links: '/links page' };
+    var ws = Object.keys(crew).sort(function (a, b) { return crew[b].join - crew[a].join; });
+    table('byCrew', ['Joined from', 'Shown', 'Joined', 'Closed', 'Join rate'], ws.map(function (w) {
+      var s = crew[w]; return [esc(WHERE[w] || w), s.ask || '–', s.join, s.ask ? s.skip : '–', s.ask ? pct(s.join, s.ask) : '–'];
+    }));
     var refs = Object.keys(src).sort(function (a, b) { return src[b].visit - src[a].visit; });
     var maxV = refs.length ? src[refs[0]].visit || 1 : 1;
     table('bySource', ['Source', 'Visits', 'Plays', 'Play rate', 'Signups'], refs.map(function (r) {
@@ -90,7 +99,7 @@
       var s = ctry[c]; return [esc(c === 'XX' ? 'Unknown' : c), region(c), s.visit, s.play, pct(s.play, s.visit), s.signup];
     }));
     var ds = Object.keys(day).sort().reverse();
-    table('byDay', ['Day', 'Visits', 'Plays', 'Signups'], ds.map(function (d) { var s = day[d]; return [d, s.visit, s.play, s.signup]; }));
+    table('byDay', ['Day', 'Visits', 'Plays', 'Signups', 'Email joins'], ds.map(function (d) { var s = day[d]; return [d, s.visit, s.play, s.signup, s.join]; }));
   }
   function table(id, head, rows) {
     var el = document.getElementById(id);

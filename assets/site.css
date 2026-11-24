@@ -297,3 +297,21 @@ footer .motto { flex-basis: 100%; text-align: center; font: italic 500 17px var(
 @media (max-width: 420px) { .nav a { padding: 10px 7px; letter-spacing: .1em; } .logo { gap: 8px; } .logo svg { width: 32px; height: 32px; } .logo .wm b { font-size: 16px; } .lang { margin-left: 2px; padding: 7px 9px; } }
 .world figure { width: min(300px, 72vw); }
 @media (max-width: 760px) { .s-hero .glow { display: none; } }
+
+/* "Join the crew" email box: footer of every page and /links */
+.crew { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; padding: 22px; border: 1px solid var(--line); border-radius: 4px; background: rgba(196,154,69,.05); text-align: left; }
+.crew-copy { flex: 1 1 260px; min-width: 0; }
+.crew-copy p { margin: 8px 0 0; color: var(--mist); font-size: 15px; line-height: 1.5; }
+.crew-form { flex: 1 1 340px; min-width: 0; position: relative; }
+.crew .field input[type=email] { flex: 1 1 200px; min-width: 0; height: 50px; padding: 0 16px; border-radius: 2px; border: 1px solid var(--line); background: rgba(7,8,9,.55); color: var(--parch); font: 500 16px var(--sans); outline: none; }
+.crew .field input[type=email]:focus { border-color: var(--witch); box-shadow: 0 0 0 3px rgba(95,242,184,.12); }
+.crew .field input::placeholder { color: var(--faint); }
+.crew .field .s-btn { flex: 0 0 auto; min-height: 50px; }
+.crew .fine { margin: 10px 0 0; }
+.crew .fine.bad { color: #ffb4a0; }
+.crew-ok { margin: 0; color: var(--witch); font: 600 15px/1.5 var(--sans); }
+@media (max-width: 480px) { .crew { padding: 18px 16px; } .crew .field .s-btn { flex: 1 1 100%; } }
+.lk-crew.crew { flex-direction: column; align-items: stretch; text-align: center; }
+.lk-crew .crew-copy, .lk-crew .crew-form { flex: 0 0 auto; }
+.lk-crew .eyebrow { justify-content: center; }
+.lk-crew .field .s-btn { flex: 1 1 100%; }
