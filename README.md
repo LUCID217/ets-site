@@ -90,3 +90,9 @@ Last deploy test: 2026-11-22.
 - **Email invite numbers:** `ask` (the game showed the invite), `join` (an email was sent, from anywhere) and `skip` (closed without joining) are counted too, in the "Email list" table on `/stats/`. The game reports from its own domain, so `/api/hit` and `/api/geo` allow `https://ets-*.netlify.app`.
 - **Where the numbers go:** two Netlify Functions in `netlify/functions/` keep daily totals in Netlify Blobs (store `ets-stats`): source, country, language and game. No cookies, IP addresses or IDs. See them at **`/stats/`** (unlisted, not indexed). The privacy page explains this under "Counting visits".
 - `package.json` exists only so Netlify installs `@netlify/blobs` for the functions. There is still no build step.
+- **Stats are locked:** `/api/stats` only answers with the right key, sent as the `x-stats-key` header. The key is the Netlify environment variable `STATS_KEY` (project ets-games → Site configuration → Environment variables; at least 16 characters). `/stats/` asks for it once and remembers it in that browser; **Lock** forgets it. If `STATS_KEY` isn't set, the numbers stay locked for everyone. Wrong guesses are limited to 10 a minute.
+- **Counter abuse:** `/api/hit` only counts hits sent from our own pages (Origin or Referer must be ets-games or a game's `ets-*.netlify.app` site) and Netlify cuts off any IP sending more than 30 a minute. To add a game on a domain that doesn't start with `ets-`, add it to `OK_ORIGIN` in `netlify/functions/shared.mjs`.
+
+## Security headers
+
+`_headers` sets them for every page. The main one, Content-Security-Policy, only lets pages load scripts, styles, images, fonts and video from this site. So: no inline `<script>` blocks (put page code in a `.js` file, like `stats/stats.js` and `links/links.js`), and if you ever add an outside service, add its address to the policy in `_headers` or the browser will block it.

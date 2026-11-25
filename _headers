@@ -1,0 +1,17 @@
+# Security headers for every page. Netlify reads this file on deploy.
+# The Content-Security-Policy only lets the browser load things from this site itself:
+# no outside scripts, no inline <script> blocks (page scripts live in .js files), and
+# no other site may show these pages inside a frame. If you ever add an outside
+# service (analytics, embedded video, Google Fonts), add its address to the matching
+# line below or the browser will block it.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000
+
+/stats/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
