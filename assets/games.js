@@ -94,9 +94,12 @@ window.ETS_GAMES = [
   },
   {
     id: 'monster-fusion-tycoon',
-    status: 'soon',
+    status: 'live',
+    playUrl: 'https://monster-fusion-0125bf.netlify.app/',
     theme: { bg: 'linear-gradient(160deg, #1fd39a, #14a89a 45%, #3a1f9e)', a1: '#ffe86b', a2: '#ffb01f', edge: '#c98a00', btnInk: '#4a2200', hot: '#ff4fa0', font: 'Lilita One' },
     cover: '/assets/img/covers/monster-fusion-tycoon.webp',
+    hero: '/assets/img/mft-menagerie.jpg',
+    shots: ['/assets/img/mft-menagerie.jpg', '/assets/img/mft-den.jpg', '/assets/img/mft-shop.jpg', '/assets/img/mft-dex.jpg'],
     text: {
       en:      { name: 'Monster Fusion Tycoon', short: 'Fuse monsters and grow your empire.' },
       es:      { short: 'Fusiona monstruos y haz crecer tu imperio.' },
